@@ -1,20 +1,17 @@
 <div class="row wrapper border-bottom white-bg page-heading">
-<div class="col-lg-10">
-    <h2>Daftar Pengguna</h2>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="<?php echo backend_url()?>">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a>Pengguna</a>
-        </li>
-        <li class="breadcrumb-item active">
-            <strong>Daftar Pengguna</strong>
-        </li>
-    </ol>
-</div>
-    <div class="col-lg-2">
-
+    <div class="col-lg-10">
+        <h2>Daftar Pengguna</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="<?php echo backend_url()?>">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>Pengguna</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Daftar Pengguna</strong>
+            </li>
+        </ol>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeIn">
@@ -77,11 +74,8 @@ $(document).ready(function(){
     $('.datatable').DataTable({
         pageLength: 25,
         responsive: true,
-        language: {
-            url: '<?php echo asset_url()?>backend/js/plugins/dataTables/i18n/<?php echo get_lang()?>.json'
-        },
         initComplete: function(){
-            $('div.toolbar').html('<button class="btn btn-sm btn-primary pull-left" id="button-add" type="button"><strong><i class="fa fa-plus"></i> <?php echo translate('crud_create');?></strong></button>');
+            $('div.toolbar').html('<button class="btn btn-sm btn-primary pull-left" id="button-add" type="button"><strong><i class="fa fa-plus"></i> Tambah Baru</strong></button>');
             $('#button-add').click(function(){
                 window.location.href = '<?php echo backend_url()?>category/create';
             });
