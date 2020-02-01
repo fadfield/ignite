@@ -7,7 +7,7 @@ $method = $this->router->fetch_method();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSPINIA | <?php echo $title; ?></title>
+    <title>IGNITE | <?php echo $title; ?></title>
     <link href="<?php echo assets_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- Morris -->
@@ -195,7 +195,7 @@ $method = $this->router->fetch_method();
                 10GB of <strong>250GB</strong> Free.
             </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2018
+                <strong>Copyright</strong> IGNITE &copy; <?php echo date('Y')?>
             </div>
         </div>
 
