@@ -7,7 +7,8 @@ class User extends CI_Controller {
 	{
 		//$data['session'] = $this->session->userdata();
 		$data['title'] = 'Pengguna';
-		$data['page'] = 'backend/dashboard/main';
+		//$data['rows'] = $this->user_model->get_rows(array('i18n'=>TRUE, 'crud'=>TRUE));
+		$data['page'] = 'backend/user/list';
 		$this->load->vars($data);
 		$this->load->view('backend/layout/template_view');
 	}
