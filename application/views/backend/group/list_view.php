@@ -66,7 +66,7 @@
 $(document).ready(function(){
     
     $('.datatable').DataTable({
-        pageLength: 25,
+        pageLength: 10,
         responsive: true,
                 language: {
             url: '<?php echo assets_url()?>js/plugins/dataTables/id.json'
