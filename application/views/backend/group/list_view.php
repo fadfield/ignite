@@ -28,7 +28,7 @@
                                     <th width="15">No.</th>
                                     <th>Nama</th>
                                     <th>Deskripsi</th>
-                                    <th width="48">Aksi</th>
+                                    <th width="48"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,7 +52,7 @@
                                     <th width="15">No.</th>
                                     <th>Nama</th>
                                     <th>Deskripsi</th>
-                                    <th width="48">Aksi</th>
+                                    <th width="48"></th>
                                 </tr>
                             </tfoot>
                         </table>

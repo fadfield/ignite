@@ -29,7 +29,7 @@
                                     <th>Username</th>
                                     <th>Nama</th>
                                     <th>Grup</th>
-                                    <th width="48">Aksi</th>
+                                    <th width="48"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,7 +56,7 @@
                                     <th>Username</th>
                                     <th>Nama</th>
                                     <th>Grup</th>
-                                    <th width="48">Aksi</th>
+                                    <th width="48"></th>
                                 </tr>
                             </tfoot>
                         </table>
