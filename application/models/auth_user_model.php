@@ -51,4 +51,27 @@
 	
 			return $items;
 		}
+		
+		public function get_auth_groups()
+		{		
+			$this->db->select('*');
+			//$this->db->where_in('state', array('A', 'I'));
+			$this->db->from('auth_group');
+			$this->db->order_by('id', 'desc');
+			$query = $this->db->get();
+			$items = $query->result_array();
+			return $items;
+		}
+
+		public function get_auth_permissions()
+		{		
+			$this->db->select('*');
+			$this->db->where_in('state', array('A', 'I'));
+			$this->db->from('auth_permission');
+			$this->db->order_by('description', 'ASC');
+			$query = $this->db->get();
+			$items = $query->result_array();
+			return $items;
+
+		}
 }

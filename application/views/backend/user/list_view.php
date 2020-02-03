@@ -25,8 +25,7 @@
                         <table class="table table-striped table-bordered table-hover datatable" >
                             <thead>
                                 <tr>
-                                    <th class="fit">ID</th>
-                                    <!-- <th>Status</th> -->
+                                    <th width="15">No.</th>
                                     <th>Username</th>
                                     <th>Nama</th>
                                     <th>Grup</th>
@@ -34,9 +33,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-<?php foreach($rows as $row):?>
+<?php $i = 1; foreach($rows as $row):?>
                                 <tr>
-                                    <td class="text-right"><?php echo $row['id']?></td>
+                                    <td class="text-center"><?php echo $i++ ?></td>
                                     <!-- <td><?php //echo get_label_status(get_state($row['state']))?></td> -->
                                     <td><?php echo $row['username']?></td>
                                     <td><?php echo $row['profile_fullname']?></td>
@@ -53,8 +52,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th class="fit">ID</th>
-                                    <!-- <th>Status</th> -->
+                                    <th width="15">No.</th>
                                     <th>Username</th>
                                     <th>Nama</th>
                                     <th>Grup</th>
@@ -74,18 +72,21 @@ $(document).ready(function(){
     $('.datatable').DataTable({
         pageLength: 25,
         responsive: true,
+                language: {
+            url: '<?php echo assets_url()?>js/plugins/dataTables/id.json'
+        },
         initComplete: function(){
             $('div.toolbar').html('<button class="btn btn-sm btn-primary pull-left" id="button-add" type="button"><strong><i class="fa fa-plus"></i> Tambah Baru</strong></button>');
             $('#button-add').click(function(){
-                window.location.href = '<?php echo backend_url()?>category/create';
+                window.location.href = '<?php echo backend_url()?>user/create';
             });
         },
         dom: '<"toolbar"><"html5buttons"B>fgtlpi',
         buttons: [
             {extend: 'copy'},
             {extend: 'csv'},
-            {extend: 'excel', title: 'Category List'},
-            {extend: 'pdf', title: 'Category List'},
+            {extend: 'excel', title: 'Daftar Pegguna'},
+            {extend: 'pdf', title: 'Daftar Pegguna'},
             {extend: 'print',
                  customize: function (win){
                         $(win.document.body).addClass('white-bg');
@@ -98,7 +99,4 @@ $(document).ready(function(){
         ]
     });
 });
-
-
-
 </script>

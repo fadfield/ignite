@@ -15,6 +15,7 @@ $method = $this->router->fetch_method();
     <link href="<?php echo assets_url();?>css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/animate.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/style.css" rel="stylesheet">
+    <link href="<?php echo assets_url() ?>css/main.css" rel="stylesheet">
 
         <!-- Mainly scripts -->
     <script src="<?php echo assets_url() ?>js/jquery-3.1.1.min.js"></script>
@@ -60,7 +61,7 @@ $method = $this->router->fetch_method();
 
 
 </head>
-<body>
+<body class="md-skin">
     <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
@@ -77,7 +78,7 @@ $method = $this->router->fetch_method();
                             <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
                             <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                            <li><a class="dropdown-item" href="<?php echo backend_url()?>login">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -91,8 +92,8 @@ $method = $this->router->fetch_method();
                     <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Pengguna</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li<?php if($class=='user') echo ' class="active"'?>><a href="<?php echo backend_url()?>user">Daftar Pengguna</a></li>
-                        <li<?php if($class=='group') echo ' class="active"'?>><a href="#">Grup</a></li>
-                        <li<?php if($class=='permission') echo ' class="active"'?>><a href="#">Akses</a></li>
+                        <li<?php if($class=='group') echo ' class="active"'?>><a href="<?php echo backend_url()?>group">Grup</a></li>
+                        <li<?php if($class=='permission') echo ' class="active"'?>><a href="<?php echo backend_url()?>permission">Akses</a></li>
                     </ul>
                 </li>
                 <li<?php if($class=='menu' || $class=='article' || $class=='category' || $class=='media') echo ' class="active"'?>>
@@ -121,7 +122,7 @@ $method = $this->router->fetch_method();
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to <b>IGNITE</b> Administrator</span>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -221,7 +222,7 @@ $method = $this->router->fetch_method();
 
 
                 <li>
-                    <a href="login.html">
+                    <a href="<?php echo backend_url()?>login">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
