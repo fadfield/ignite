@@ -13,9 +13,12 @@ $method = $this->router->fetch_method();
     <!-- Morris -->
     <link href="<?php echo assets_url() ?>css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="<?php echo assets_url();?>css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="<?php echo assets_url() ?>css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="<?php echo assets_url() ?>css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/animate.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/style.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/main.css" rel="stylesheet">
+    
 
         <!-- Mainly scripts -->
     <script src="<?php echo assets_url() ?>js/jquery-3.1.1.min.js"></script>
@@ -23,6 +26,9 @@ $method = $this->router->fetch_method();
     <script src="<?php echo assets_url() ?>js/bootstrap.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo assets_url() ?>js/plugins/iCheck/icheck.min.js"></script>
+    <script src="<?php echo assets_url() ?>js/plugins/chosen/chosen.jquery.js"></script>
+    
     <!-- DataTable-->
     <script src="<?php echo assets_url() ?>js/plugins/dataTables/datatables.min.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>

@@ -74,4 +74,15 @@
 			return $items;
 
 		}
+		public function get_active_auth_permissions()
+		{		
+			$this->db->select('*');
+			$this->db->where('state', 'A');
+			$this->db->from('auth_permission');
+			$this->db->order_by('description', 'ASC');
+			$query = $this->db->get();
+			$items = $query->result_array();
+			return $items;
+
+		}
 }
