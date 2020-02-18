@@ -39,16 +39,11 @@
 			}else{
 				$this->db->where($this->table_name.'.state', 'A');
 			}
-			
 			$this->db->join('user_profile', 'user_profile.user_id = '.$this->table_name.'.id');
-			//$this->db->join('user_profile_i18n', 'user_profile.user_id = user_profile_i18n.row_id', 'left');
-			//$this->db->where('user_profile_i18n.culture', get_lang());
-			
 			$this->db->from($this->table_name);
 			$this->db->order_by('id', 'ASC');
 			$query = $this->db->get();
 			$items = $query->result_array();
-	
 			return $items;
 		}
 		

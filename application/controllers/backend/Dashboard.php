@@ -10,8 +10,6 @@ class Dashboard extends CI_Controller {
 	}
 	public function index()
 	{
-		/*$data['session'] = $this->session->userdata();
-		$data['menu'] = 'backend/menu';*/
 		$data['title'] = 'Dashboard';
 		$data['page'] = 'backend/dashboard/main';
 		$this->load->vars($data);

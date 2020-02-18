@@ -5,7 +5,6 @@ class Group extends CI_Controller {
 
 	public function index()
 	{
-		//$data['session'] = $this->session->userdata();
 		$data['title'] = 'Daftar Grup';
 		$data['rows'] = $this->auth_user_model->get_auth_groups();
 		$data['page'] = 'backend/group/list';

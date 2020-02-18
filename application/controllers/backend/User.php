@@ -9,7 +9,6 @@ class User extends CI_Controller {
 	}
 	public function index()
 	{
-		//$data['session'] = $this->session->userdata();
 		$data['title'] = 'Daftar Pengguna';
 		$data['rows'] = $this->auth_user_model->get_rows(array('relation'=>'profile_group', 'crud'=>1));
 		$data['page'] = 'backend/user/list';
