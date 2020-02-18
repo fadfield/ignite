@@ -46,7 +46,14 @@
 			$items = $query->result_array();
 			return $items;
 		}
-		
+		public function is_group_exist($params){
+			$this->db->select('name');
+			$this->db->from('auth_group');
+			if(isset($params['id']) && $params['id'])
+				$this->db->where('id !=', $params['id']);
+			$this->db->where('name', $params['name']);
+			return ($this->db->count_all_results() > 0) ? TRUE : FALSE; 
+		}
 		public function get_auth_groups()
 		{		
 			$this->db->select('*');
@@ -79,5 +86,67 @@
 			$items = $query->result_array();
 			return $items;
 
+		}
+		public function create_auth_group($post){
+			$params = array(
+				'name' => $post['name'],
+				'description' => $post['description']
+			);
+			
+			$success = FALSE;
+			
+			$this->db->insert('auth_group', $params); 
+			$id = $this->db->insert_id(); 
+
+			$permissions = (isset($post['permissions'])) ? $post['permissions'] : array();
+			
+			if($id){
+				if($this->set_group_permissions($id, $permissions)){
+					$success = TRUE;
+				}
+				
+			}
+			echo $this->db->last_query();
+			return $id;
+		}
+		public function set_group_permissions($group_id, $permissions){
+			$this->db->trans_start();
+			$this->db->delete('auth_group_permission', array('group_id'=>$group_id));
+			foreach($permissions as $permission){
+				$this->db->insert('auth_group_permission', array('group_id'=>$group_id, 'permission_id'=>$permission)); 
+			}
+			$this->db->trans_complete();
+			
+			return ($this->db->trans_status() === FALSE) ? FALSE : TRUE; 
+		}
+		public function get_auth_group_row($id)
+		{		
+			$this->db->select('*');
+			$this->db->where('id', $id);
+			$this->db->from('auth_group');
+			$this->db->order_by('description', 'ASC');
+			$query = $this->db->get();
+			$item = $query->row_array();
+			$item['permissions'] = $this->get_group_permissions($item);
+			return $item;
+		}
+		public function get_group_permissions($group)
+		{		
+			$this->db->select('auth_permission.`name`, auth_permission.`description`');
+			$this->db->where('group_id', $group['id']);
+			$this->db->from('auth_group_permission');
+			$this->db->join('auth_permission', 'auth_permission.id = auth_group_permission.permission_id');
+			$this->db->order_by('auth_permission.description', 'ASC');
+			$query = $this->db->get();
+
+			return $query->result_array();
+		}
+		public function delete_auth_group($id){
+			$this->db->trans_start();
+			$this->db->delete('auth_group', array('id' => $id));
+			$this->db->delete('auth_group_permission', array('group_id' => $id));
+			$this->db->trans_complete();
+			
+			return ($this->db->trans_status() === FALSE) ? FALSE : TRUE; 
 		}
 }
