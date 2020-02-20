@@ -8,8 +8,12 @@
     <div class="hr-line-dashed"></div>
     <div class="form-group<?php echo (form_error('description')) ? ' has-error' : ''?> row">
         <label class="col-sm-2 control-label">Deskripsi</label>
-        <div class="col-sm-8"><input type="text" name="description" value="<?php echo set_value('description', @$row['description']); ?>" class="form-control"></div>
-    	<?php echo form_error('description'); ?>
+        <div class="col-sm-6">
+            <textarea name="description" class="form-control">
+<?php echo set_value('description', @$row['description']); ?></textarea>
+        </div>
+<!--         <div class="col-sm-8"><input type="text" name="description" value="<?php echo set_value('description', @$row['description']); ?>" class="form-control"></div>
+    	<?php echo form_error('description'); ?> -->
     </div>
     <div class="hr-line-dashed"></div>
     <div class="form-group row">

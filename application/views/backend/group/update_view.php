@@ -1,17 +1,17 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-lg-12">
-		<h2><?php echo translate('crud_update')?> <?php echo translate('group')?></h2>
+		<h2>Edit Grup Baru</h2>
 		<ol class="breadcrumb">
-			<li>
-				<a href="<?php echo backend_url()?>dashboard"><?php echo translate('dashboard')?></a>
+			<li class="breadcrumb-item">
+				<a href="<?php echo backend_url()?>dashboard"> Dashboard</a>
 			</li>
-			<li><?php echo translate('user')?></li>
-			<li>
-				<a href="<?php echo backend_url()?>group"><?php echo translate('group')?></a>
+			<li class="breadcrumb-item">Pengguna</li>
+			<li class="breadcrumb-item">
+				<a href="<?php echo backend_url()?>group">Grup</a>
 			</li>
-			<li class="active">
-				<strong><?php echo translate('crud_update')?></strong>
+			<li class="breadcrumb-item active">
+				<strong>Edit</strong>
 			</li>
 		</ol>
 	</div>

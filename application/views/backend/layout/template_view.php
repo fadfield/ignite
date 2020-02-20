@@ -10,23 +10,28 @@ $method = $this->router->fetch_method();
     <title>IGNITE | <?php echo $title; ?></title>
     <link href="<?php echo assets_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>font-awesome/css/font-awesome.css" rel="stylesheet">
-    <!-- Morris -->
+
+    <!-- Mainly CSS -->
+    <link href="<?php echo assets_url() ?>css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="<?php echo assets_url();?>css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
+    <link href="<?php echo assets_url() ?>css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/animate.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/style.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/main.css" rel="stylesheet">
     
 
-        <!-- Mainly scripts -->
+    <!-- Mainly scripts -->
     <script src="<?php echo assets_url() ?>js/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo assets_url() ?>js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="<?php echo assets_url() ?>js/popper.min.js"></script>
     <script src="<?php echo assets_url() ?>js/bootstrap.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/iCheck/icheck.min.js"></script>
+    <script src="<?php echo assets_url() ?>js/plugins/toastr/toastr.min.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/chosen/chosen.jquery.js"></script>
     
     <!-- DataTable-->
@@ -46,7 +51,6 @@ $method = $this->router->fetch_method();
     <script src="<?php echo assets_url() ?>js/demo/peity-demo.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="<?php echo assets_url() ?>js/inspinia.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/pace/pace.min.js"></script>
 
     <!-- jQuery UI -->
@@ -64,6 +68,9 @@ $method = $this->router->fetch_method();
 
     <!-- ChartJS-->
     <script src="<?php echo assets_url() ?>js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="<?php echo assets_url() ?>js/main.js"></script>
 
 
 </head>

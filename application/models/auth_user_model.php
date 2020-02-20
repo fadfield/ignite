@@ -149,4 +149,33 @@
 			
 			return ($this->db->trans_status() === FALSE) ? FALSE : TRUE; 
 		}
+		public function update_auth_group($id, $post){
+			$params = array(
+				'state' => $post['state'],
+				'name' => $post['name'],
+				'description' => $post['description']
+			);
+			
+			$id = $post['id'];
+			$permissions = $post['permissions'];
+			
+			$success = FALSE;
+			
+			$this->db->where('id', $id);
+			$this->db->update('auth_group', $params); 
+			
+			if($this->set_group_permissions($id, $permissions)){
+				$success = TRUE;
+			}
+						
+			return $success;
+		}
+		public function delete($id){
+			$this->db->trans_start();
+			$this->db->delete('auth_user', array('id' => $id));
+			$this->db->delete('auth_user_group', array('user_id' => $id));
+			$this->db->trans_complete();
+			
+			return ($this->db->trans_status() === FALSE) ? FALSE : TRUE; 
+		}
 }
