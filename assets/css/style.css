@@ -1937,7 +1937,7 @@ button.dim:active:before {
   padding: 3px 8px;
   text-shadow: none;
   border-radius: 0.25em;
-  line-height: 1;
+  line-height: 2;
   white-space: nowrap;
 }
 .nav .label,
@@ -4516,9 +4516,10 @@ video {
   background: #f8fafb;
 }
 .inmodal .modal-header {
-  padding: 30px 15px;
+  padding: 20px 15px;
   text-align: center;
   display: block;
+  border-bottom: 0px;
 }
 .animated.modal.fade .modal-dialog {
   -webkit-transform: none;

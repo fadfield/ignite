@@ -1,7 +1,7 @@
 /*
  *
- *   INSPINIA - Responsive Admin Theme
- *   version 2.9.2
+ *   IGNITE Administrator System
+ *
  *
  */
 
@@ -37,6 +37,24 @@ $(document).ready(function () {
             ibox.resize();
             ibox.find('[id^=map-]').resize();
         }, 50);
+    });
+
+    // Delete Sweet ALert
+    $('.delete').click(function () {
+    var getLink = $(this).attr('href');
+    swal({
+        title: "Yakin Ingin Menghapus?",
+        text: "Anda tidak dapat memulihkan setelah dihapus!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Ya, hapus!",
+        cancelButtonText: "Tidak, batalkan!",
+        closeOnConfirm: false,
+        closeOnCancel: true 
+    },
+    function(){ window.location.href = getLink});
+    return false;
     });
 
     // Close ibox function
