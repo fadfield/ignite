@@ -42,7 +42,7 @@
                                     <td><?php echo $row['group_name']?></td>
                                     <td class="center">
                                         <div class="btn-group">
-                                            <a href="<?php echo backend_url()?>user/show/<?php echo $row['id']?>" title="<?php echo $this->lang->line('crud_view')?>" class="btn-white btn btn-xs"><i class="fa fa-eye"></i></a>
+                                            <a href="javascript:void(0);" onclick="detailData(<?php echo $row['id']?>)" title="Lihat" class="btn-white btn btn-xs" data-toggle="modal" data-target="#modalDetail"><i class="fa fa-eye"></i></a>
                                             <a href="<?php echo backend_url()?>user/update/<?php echo $row['id']?>" title="<?php echo $this->lang->line('crud_update')?>" class="btn-white btn btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="<?php echo backend_url()?>user/delete/<?php echo $row['id']?>" title="<?php echo $this->lang->line('crud_delete')?>" class="btn-white btn btn-xs delete"><i class="fa fa-trash"></i></a>
                                         </div>
@@ -63,6 +63,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal fade" id="modalDetail" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div id="datadetail"></div>
         </div>
     </div>
 </div>
@@ -99,4 +106,18 @@ $(document).ready(function(){
         ]
     });
 });
+function detailData(id) {
+    var base_url = '<?php echo backend_url(); ?>';
+    $.ajax({
+        url: base_url + 'user/show/' + id,
+        method: "GET"
+    })
+    .done(function( data ) {
+        $('#datadetail').html(data);
+        $('#modalDetail').modal('show');
+    })
+    .fail(function( jqXHR, statusText ) {
+        alert( "Request failed: " + jqXHR.status );
+    });
+}
 </script>

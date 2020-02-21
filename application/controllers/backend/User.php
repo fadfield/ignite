@@ -26,13 +26,30 @@ class User extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
 
-	public function show()
+	public function show($id)
 	{
-		$this->load->view('welcome_message');
+		$data['row'] = $this->auth_user_model->get_row($id);
+		$this->load->vars($data);
+		$this->load->view('backend/user/show_view');
 	}
 
-	public function delete()
-	{
-		$this->load->view('welcome_message');
+	public function delete($id)
+	{	
+		if($delete = $this->auth_user_model->delete($id)){
+			if($delete_profile = $this->user_profile_model->delete($id)){
+				$data['result'] = array(
+					'success'=>TRUE,
+					'message'=>'Data berhasil dihapus'
+				);
+				$this->session->set_flashdata('result', $data['result']);
+				redirect(backend_url().'user');
+
+			}else{
+				$data['result'] = array(
+					'success'=>FALSE,
+					'message'=>'Gagal hapus data'
+				);
+			}
+		}
 	}
 }

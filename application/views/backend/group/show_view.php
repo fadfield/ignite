@@ -28,6 +28,6 @@
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Close</button>
     <a href="<?php echo backend_url()?>group/update/<?php echo $row['id']?>" title="Edit" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+    <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Close</button>
 </div>

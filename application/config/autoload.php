@@ -6,4 +6,4 @@ $autoload['helper'] = array('directory','file', 'text', 'url', 'date', 'security
 $autoload['drivers'] = array();
 $autoload['config'] = array();
 $autoload['language'] = array();
-$autoload['model'] = array('auth_user_model');
+$autoload['model'] = array('auth_user_model', 'user_profile_model');
