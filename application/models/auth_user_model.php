@@ -57,20 +57,64 @@ class Auth_user_model extends CI_Model {
 		$items = $query->result_array();
 		return $items;
 	}
-	public function get_row($id){
-		$this->db->select($this->table_name.'.*, 
-			user_profile.phone AS profile_phone,
-			user_profile.fullname AS profile_fullname,
-			auth_group.name AS group_name,
-			user_profile.image_path AS image_path
-		');
+	public function get_row($id, $params = array()){
 		$this->db->where('auth_user.id', $id);
-		$this->db->join('user_profile', 'user_profile.user_id = '.$this->table_name.'.id');
-		$this->db->join('auth_user_group', 'auth_user_group.user_id = '.$this->table_name.'.id', 'left');
-		$this->db->join('auth_group', 'auth_group.id = auth_user_group.group_id', 'left');
+		if(isset($params['fetch_profile'])){
+			$this->db->select($this->table_name.'.*, 
+				user_profile.phone AS phone,
+				user_profile.fullname AS fullname,
+				user_profile.email AS email,
+				auth_group.name AS group_name,
+				user_profile.image_path AS image_path
+			');
+			$this->db->join('user_profile', 'user_profile.user_id = '.$this->table_name.'.id');
+			$this->db->join('auth_user_group', 'auth_user_group.user_id = '.$this->table_name.'.id', 'left');
+			$this->db->join('auth_group', 'auth_group.id = auth_user_group.group_id', 'left');
+		}
 		$query = $this->db->get($this->table_name);
 		$item = $query->row_array();
 		return $item;
+	}
+	public function create($params){
+		$this->db->insert($this->table_name, $params); 
+		if($id = $this->db->insert_id()){
+			return $this->get_row($id);
+		}else{
+			return null;
+		}
+	}
+	public function set_user_groups($user_id, $groups){
+		$this->db->trans_start();
+		$this->db->delete('auth_user_group', array('user_id'=>$user_id));
+		foreach($groups as $group){
+			$this->db->insert('auth_user_group', array('user_id'=>$user_id, 'group_id'=>$group)); 
+		}
+		$this->db->trans_complete();
+		
+		return ($this->db->trans_status() === FALSE) ? FALSE : TRUE; 
+	}
+	public function get_user_group_rows($user)
+	{		
+		$this->db->select('auth_group.*');
+		$this->db->where('user_id', $user['id']);
+		$this->db->from('auth_user_group');
+		$this->db->join('auth_group', 'auth_group.id = auth_user_group.group_id');
+		$query = $this->db->get();
+		return $query->result_array();;
+	}
+	public function auth_user_update($id, $params){
+		$this->db->trans_start();
+		$this->db->where('id', $id);
+		$this->db->update($this->table_name, $params); 
+		$this->db->trans_complete();
+		return ($this->db->trans_status() === FALSE) ? FALSE : TRUE; 
+	}
+	public function update($id, $post){
+		if($this->auth_user_update($id, $post)){
+			return $this->get_row($id);
+		}else{
+			return null;
+		}	
 	}
 	public function is_group_exist($params){
 		$this->db->select('name');
@@ -132,7 +176,7 @@ class Auth_user_model extends CI_Model {
 			}
 			
 		}
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		return $id;
 	}
 	public function set_group_permissions($group_id, $permissions){

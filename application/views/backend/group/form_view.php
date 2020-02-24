@@ -1,4 +1,3 @@
-
 <form class="form-horizontal" method="post">
     <div class="form-group<?php echo (form_error('name')) ? ' has-error' : ''?> row">
         <label class="col-sm-2 control-label">Nama<br><small class="text-navy">Harus Diisi</small></label>

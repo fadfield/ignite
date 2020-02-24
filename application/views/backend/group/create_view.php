@@ -6,7 +6,7 @@
 			<li class="breadcrumb-item">
 				<a href="<?php echo backend_url()?>dashboard"> Dashboard</a>
 			</li>
-			<li class="breadcrumb-item">Pengguna</li>
+			<li class="breadcrumb-item">Daftar Pengguna</li>
 			<li class="breadcrumb-item">
 				<a href="<?php echo backend_url()?>group">Grup</a>
 			</li>

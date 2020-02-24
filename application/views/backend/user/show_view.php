@@ -25,16 +25,20 @@
 	        <td><p><?php echo $row['username']; ?></p></td>
 	    </tr>
 	    <tr>
+	        <td><strong>Email</strong></td>
+	        <td><p><?php echo $row['email']; ?></p></td>
+	    </tr>
+	    <tr>
 	        <td><strong>Grup</strong></td>
 	        <td><p><?php echo $row['group_name']; ?></p></td>
 	    </tr>
 	    <tr>
 	        <td><strong>Nama</strong></td>
-	        <td><p><?php echo $row['profile_fullname']; ?></p></td>
+	        <td><p><?php echo $row['fullname']; ?></p></td>
 	    </tr>
 	    <tr>
 	        <td><strong>No. HP</strong></td>
-	        <td><p><?php echo $row['profile_phone']; ?></p></td>
+	        <td><p><?php echo $row['phone']; ?></p></td>
 	    </tr>
 	    </tbody>
 	</table>

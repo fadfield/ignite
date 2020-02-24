@@ -18,6 +18,8 @@ $method = $this->router->fetch_method();
     <link href="<?php echo assets_url() ?>css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="<?php echo assets_url() ?>css/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="<?php echo assets_url() ?>css/plugins/dropzone/dropzone.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/animate.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/style.css" rel="stylesheet">
     <link href="<?php echo assets_url() ?>css/main.css" rel="stylesheet">
@@ -32,6 +34,7 @@ $method = $this->router->fetch_method();
     <script src="<?php echo assets_url() ?>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/iCheck/icheck.min.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/toastr/toastr.min.js"></script>
+    <script src="<?php echo assets_url() ?>js/plugins/dropzone/dropzone.js"></script>
     <script src="<?php echo assets_url() ?>js/plugins/chosen/chosen.jquery.js"></script>
     
     <!-- DataTable-->

@@ -1,6 +1,5 @@
 <?php if(validation_errors() || (isset($result) && !$result['success']) ):?>
-<?php echo validation_errors(); ?>
-	<script>
+<!-- 	<script>
     $(document).ready(function() {
 	    setTimeout(function() {
 	        toastr.options = {
@@ -20,11 +19,11 @@
 
 	    }, 1300);
     });
-    </script>
-<!-- <div class="alert alert-danger alert-dismissable">
+    </script> -->
+<div class="alert alert-danger alert-dismissable">
 	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 	<b><i class="fa fa-warning"></i> ERROR</b>
 	<?php echo validation_errors(); ?>
 	<?php echo isset($result['message']) ? $result['message'] : ''; ?>
-</div> -->
+</div>
 <?php endif; ?>
