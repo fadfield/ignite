@@ -61,7 +61,8 @@ class Auth_user_model extends CI_Model {
 		$this->db->select($this->table_name.'.*, 
 			user_profile.phone AS profile_phone,
 			user_profile.fullname AS profile_fullname,
-			auth_group.name AS group_name
+			auth_group.name AS group_name,
+			user_profile.image_path AS image_path
 		');
 		$this->db->where('auth_user.id', $id);
 		$this->db->join('user_profile', 'user_profile.user_id = '.$this->table_name.'.id');

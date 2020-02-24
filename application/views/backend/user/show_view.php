@@ -11,7 +11,7 @@
 	        <td><p>
 		        <?php if(!empty($row['image_path'])): ?>
 		            <a data-toggle="modal" data-target="#myModal5">
-		                <img style="height: 150px; border-radius: 100%;" src="<?php echo asset_url().'uploads/users/medium_'.$row['image_path']?>" zoom="<?php echo asset_url().'uploads/users/'.$row['image_path']?>" class="getSrc">
+		                <img style="height: 150px; border-radius: 100%;" src="<?php echo assets_url().'uploads/users/medium_'.$row['image_path']?>" zoom="<?php echo assets_url().'uploads/users/'.$row['image_path']?>" class="getSrc">
 		            </a>
 		        <?php endif; ?>
 		        <?php if(empty($row['image_path'])): ?>
