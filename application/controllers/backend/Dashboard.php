@@ -18,21 +18,21 @@ class Dashboard extends MY_Controller {
 
 	public function create()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('comingsoon_view');
 	}
 
 	public function update()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('comingsoon_view');
 	}
 
 	public function show()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('comingsoon_view');
 	}
 
 	public function delete()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('comingsoon_view');
 	}
 }
