@@ -13,11 +13,11 @@
 		</style>
 	</head>
 	<body style="background-color: #f1f1f1;">
-		<form method="post">
+		<form role="form" autocomplete="off" method="post" action="<?php echo backend_url()?>user/do_login">
 			<div class="logo">
 				<img src="<?php echo assets_url()?>img/logo.png">
 			</div>
-			<input name="email" placeholder="Username" type="text" required>
+			<input name="username" placeholder="Username" type="text" required>
 			<input name="password" placeholder="Password" type="password" required>
 			<button type="submit">Submit</button>
 		</form> 

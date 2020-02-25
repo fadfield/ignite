@@ -7,7 +7,7 @@
 			</li>
 			<li class="breadcrumb-item">Pengguna</li>
 			<li class="breadcrumb-item">
-				<a href="<?php echo backend_url()?>group">Daftar Pengguna</a>
+				<a href="<?php echo backend_url()?>user">Daftar Pengguna</a>
 			</li>
 			<li class="breadcrumb-item active">
 				<strong>Edit</strong>

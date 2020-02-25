@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Permission extends CI_Controller {
+class Permission extends MY_Controller {
 
 	public function index()
 	{
