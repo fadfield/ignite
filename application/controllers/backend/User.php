@@ -5,10 +5,58 @@ class User extends MY_Controller {
 
 	public function login()
 	{
+		if($this->input->post()){
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+			
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			$params = array('username'=>$username, 'password'=>$password);
+			
+			$success = FALSE;
+			$message = '';
+			
+			if ($this->form_validation->run() === TRUE) {
+				$user = $this->auth_user_model->login($params);
+				if($user){
+					$user['permissions'] = $this->auth_user_model->get_user_permissions($user);
+					$user['groups'] = $this->auth_user_model->get_user_groups($user);
+					$this->auth->set_user($user);
+					$success = TRUE;
+					redirect(backend_url());
+				}else{
+					$this->auth->unset_user();
+					$this->session->sess_destroy();
+					$data['result'] = array(
+							'success'=>FALSE,
+							'message'=>'Username atau Password salah'
+						);
+						
+					//set flash data 
+					$this->session->set_flashdata('result', $data['result']);
+
+					//redirect
+					redirect(backend_url().'login');
+
+				}
+			} else {
+				$message = validation_errors();	
+			}
+			/*$json = array('success'=>$success, 'message'=>$message);
+			$this->output->set_content_type('application/json')->set_output(json_encode($user));*/
+
+		}
 		$this->load->view('backend/user/login_view');
+	}
+	public function logout()
+	{		
+		$this->auth->unset_user();
+		$this->session->sess_destroy();
+		redirect(backend_url().'login');
 	}
 	public function index()
 	{
+		$this->is_authenticated();
 		$data['title'] = 'Daftar Pengguna';
 		$data['rows'] = $this->auth_user_model->get_rows(array('relation'=>'profile_group', 'crud'=>1));
 		$data['page'] = 'backend/user/list';
@@ -18,6 +66,7 @@ class User extends MY_Controller {
 
 	public function create()
 	{
+		$this->is_authenticated();
 		$data['title'] = 'Tambah Pengguna';
 		//set form mode
 		$data['mode'] = 'create';	
@@ -203,8 +252,6 @@ class User extends MY_Controller {
 
 					}
 				}
-				echo $this->db->last_query();
-				die();
 			}
 		}
 			
@@ -218,7 +265,7 @@ class User extends MY_Controller {
 
 	public function update($id='')
 	{		
-	
+		$this->is_authenticated();
 		//$this->is_authenticated();
 		$data['title'] = 'Ubah Pengguna';
 		//set form mode
@@ -416,6 +463,7 @@ class User extends MY_Controller {
 
 	public function show($id)
 	{
+		$this->is_authenticated();
 		$data['row'] = $this->auth_user_model->get_row($id, array('fetch_profile'=>TRUE));
 		$this->load->vars($data);
 		$this->load->view('backend/user/show_view');
@@ -423,6 +471,7 @@ class User extends MY_Controller {
 
 	public function delete($id)
 	{	
+		$this->is_authenticated();
 		if($delete = $this->auth_user_model->delete($id)){
 			if($delete_profile = $this->user_profile_model->delete($id)){
 				$data['result'] = array(
@@ -440,4 +489,38 @@ class User extends MY_Controller {
 			}
 		}
 	}
+	public function profile()
+    {
+    	$this->is_authenticated();
+    	//get user id active
+		$user_id = $this->auth->get_user_id();
+    	//get data
+    	$data['row'] = $this->user_profile_model->get_row($user_id);
+    	$data['group_user'] = $this->user_profile_model->get_row_group($user_id);
+    	$data['group_active'] = $this->auth_user_model->get_auth_groups();
+
+    	//get param show
+    	$param = htmlspecialchars($_GET["param"]);
+
+    	//return show to template_view
+    	if ($param == 'picture') {
+    		if (!empty($data['row']['image_path'])) {
+    			echo base_url().'assets/uploads/users/small_'.$data['row']['image_path'];
+    		}
+    		else{
+    			echo asset_url().'backend/img/profile_small.jpg';
+    		}
+
+    	}
+    	if ($param == 'fullname') {
+    		echo $data['row']['fullname'];
+    	}
+    	if ($param == 'group') {
+    		foreach ($data['group_active'] as $group_active) {
+    			if ($group_active['id'] == $data['group_user']['group_id']) {
+    				echo $group_active['name']." <b class='caret'></b>";
+    			}
+    		}
+    	}
+    }
 }

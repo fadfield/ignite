@@ -2,6 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Permission extends MY_Controller {
+	
+	public function __construct()
+	{
+		parent::__construct();
+		$this->is_authenticated();
+	}
 
 	public function index()
 	{

@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Group extends MY_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->is_authenticated();
+	}
 	public function index()
 	{
 		$data['title']	= 'Daftar Grup';

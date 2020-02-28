@@ -27,7 +27,7 @@ class MY_Controller extends CI_Controller{
 		$class = $this->router->fetch_class();
 		$method = $this->router->fetch_method();
 		$module = str_replace('/','_',$directory.$class);//$this->_get_module_name();
-			
+		
 		if(!$this->auth->is_authenticated()){
 			if($class!=='user' && $method!=='login'){
 				if($directory=='backend/'){
@@ -38,7 +38,7 @@ class MY_Controller extends CI_Controller{
 			}
 		}
 		
-		if(!$this->auth->has_permission($module)){
+		if(!$this->auth->has_permission($class)){
 			redirect(base_url().'error/unauthorized?module='.$module);
 		}
 	}

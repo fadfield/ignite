@@ -2,7 +2,7 @@
 <html >
 	<head>
 	  	<meta charset="UTF-8">
-	  	<title>Login AdminIgniter</title>
+	  	<title>Login IGNITER</title>
 	  	<link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
 		<link href="<?php echo assets_url() ?>css/bootstrap.min.css" rel="stylesheet">
 		<link href="<?php echo assets_url() ?>font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body style="background-color: #f1f1f1;">
-		<form role="form" autocomplete="off" method="post" action="<?php echo backend_url()?>user/do_login">
+		<form role="form" autocomplete="off" method="post">
 			<div class="logo">
 				<img src="<?php echo assets_url()?>img/logo.png">
 			</div>

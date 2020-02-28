@@ -11,8 +11,6 @@
             <textarea name="description" class="form-control">
 <?php echo set_value('description', @$row['description']); ?></textarea>
         </div>
-<!--         <div class="col-sm-8"><input type="text" name="description" value="<?php echo set_value('description', @$row['description']); ?>" class="form-control"></div>
-    	<?php echo form_error('description'); ?> -->
     </div>
     <div class="hr-line-dashed"></div>
     <div class="form-group row">
@@ -27,8 +25,6 @@
         </div>
 <?php $i=1; else: $i++; endif; $x++; ?>        
 <?php endforeach;?>
-        
-       
     </div>						
     <div class="hr-line-dashed"></div>
     <div class="form-group">
@@ -42,7 +38,6 @@
         </div>
     </div>
 </form>
-				
 <script>
 $(document).ready(function(){
 	$('.i-checks').iCheck({

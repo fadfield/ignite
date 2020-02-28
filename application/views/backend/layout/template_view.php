@@ -84,21 +84,21 @@ $method = $this->router->fetch_method();
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <img alt="image" class="rounded-circle" src="<?php echo assets_url() ?>img/profile_small.jpg"/>
+                        <span class="rounded-circle" id="session_picture"></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">IGNITE</span>
-                            <span class="text-muted text-xs block">Administrator <b class="caret"></b></span>
+                            <span class="clear"><span class="block m-t-xs"><strong class="font-bold" id="session_fullname"></strong></span>
+                            <span class="text-muted text-xs block" id="session_group"></span> </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a class="dropdown-item" href="profile.html">Profile</a></li>
                             <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
                             <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="<?php echo backend_url()?>login">Logout</a></li>
+                            <li><a class="dropdown-item" href="<?php echo backend_url()?>user/logout">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                        IGNITE
                     </div>
                 </li>
                 <li<?php if($class=='dashboard') echo ' class="active"'?>>
@@ -238,7 +238,7 @@ $method = $this->router->fetch_method();
 
 
                 <li>
-                    <a href="<?php echo backend_url()?>login">
+                    <a href="<?php echo backend_url()?>user/logout">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
@@ -641,4 +641,18 @@ $method = $this->router->fetch_method();
         </div>
     </div>
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+    $.get("<?php echo backend_url().'user/profile';?>", {param: 'picture'}, function(data){
+            image_profile = '<img alt="image" class="rounded-circle" src="'+data+'" width="50" height="50" />';
+            $("#session_picture").html(image_profile);
+    });
+    $.get("<?php echo backend_url().'user/profile';?>", {param: 'fullname'}, function(data){
+            $("#session_fullname").append(data);
+    });
+    $.get("<?php echo backend_url().'user/profile';?>", {param: 'group'}, function(data){
+            $("#session_group").append(data);
+    });
+});
+</script> 
 </html>

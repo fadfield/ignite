@@ -18,7 +18,76 @@ class Auth_user_model extends CI_Model {
 		// Call the CI_Model constructor
 		parent::__construct();
 	}
+    public function login($params, $is_authorize = FALSE)
+    {
+		$username = trim($params['username']);
+		$password = trim($params['password']);
+		$success = FALSE;
+		
+		$this->db->where('username', $params['username']);
+		$query = $this->db->get($this->table_name);
+		$user = $query->row_array();
+		
+		if($user){
+			if(md5($password) === $user['password']){
+				$success = TRUE;
+				if(!$is_authorize) $this->set_last_login($user);
+			}
+		};
+		
+		return ($success) ? $user : NULL;
+    }
+	public function get_user_permissions($user)
+	{
+		$permissions = array();
+		$this->db->select('auth_permission.`name`');
+		$this->db->where('user_id', $user['id']);
+		$this->db->from('auth_user_group');
+		$this->db->join('auth_group', 'auth_group.id = auth_user_group.group_id');
+		$this->db->join('auth_group_permission', 'auth_group_permission.group_id = auth_group.id');
+		$this->db->join('auth_permission', 'auth_permission.id = auth_group_permission.permission_id');
+		$query = $this->db->get();
+		$group_permissions = array();
+		foreach($query->result_array() as $result){
+			$group_permissions[] = $result['name'];
+		}
+		
+		$this->db->select('auth_permission.`name`');
+		$this->db->where('user_id', $user['id']);
+		$this->db->from('auth_permission');
+		$this->db->join('auth_user_permission', 'auth_permission.id = auth_user_permission.permission_id');
+		$query = $this->db->get();
+		$user_permissions = array();
+		foreach($query->result_array() as $result){
+			$user_permissions[] = $result['name'];
+		}
+		
+		$permissions = array_unique(array_merge($group_permissions, $user_permissions), SORT_REGULAR);
+		return $permissions;
+	}
+	public function get_user_groups($user)
+	{		
+		$this->db->select('auth_group.`name`');
+		$this->db->where('user_id', $user['id']);
+		$this->db->from('auth_user_group');
+		$this->db->join('auth_group', 'auth_group.id = auth_user_group.group_id');
+		$query = $this->db->get();
+		$groups = array();
+		foreach($query->result_array() as $result){
+			$groups[] = $result['name'];
+		}
+		return $groups;
+	}
+    public function set_last_login($user)
+    {
+		$data = array('last_login' => date('Y-m-d H:i:s'));
+		$this->db->where('id', $user['id']);
+		$this->db->update($this->table_name, $data); 
+		return ($this->db->affected_rows() > 0) ? TRUE : FALSE; 
+	}
 
+
+	
 	public function get_active_rows()
 	{
 		$this->db->where('state', 'A');

@@ -6,7 +6,7 @@ class Dashboard extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		//$this->is_authenticated();
+		$this->is_authenticated();
 	}
 	public function index()
 	{
