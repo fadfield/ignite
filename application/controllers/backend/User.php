@@ -36,7 +36,7 @@ class User extends MY_Controller {
 					$this->session->set_flashdata('result', $data['result']);
 
 					//redirect
-					redirect(backend_url().'login');
+					redirect(base_url().'login');
 
 				}
 			} else {
@@ -52,7 +52,7 @@ class User extends MY_Controller {
 	{		
 		$this->auth->unset_user();
 		$this->session->sess_destroy();
-		redirect(backend_url().'login');
+		redirect(base_url().'login');
 	}
 	public function index()
 	{

@@ -31,9 +31,9 @@ class MY_Controller extends CI_Controller{
 		if(!$this->auth->is_authenticated()){
 			if($class!=='user' && $method!=='login'){
 				if($directory=='backend/'){
-					redirect(backend_url().'login');
+					redirect(base_url().'login');
 				}else{
-					redirect(backend_url().'login');
+					redirect(base_url().'login');
 				}
 			}
 		}
